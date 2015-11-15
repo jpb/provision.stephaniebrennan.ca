@@ -1,0 +1,207 @@
+/* Scaffolding */
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('../fonts/Gotham-Book.eot');
+  src: url('../fonts/Gotham-Book.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Gotham-Book.woff2') format('woff2'),
+       url('../fonts/Gotham-Book.woff') format('woff'),
+       url('../fonts/Gotham-Book.ttf') format('truetype'),
+       url('../fonts/Gotham-Book.svg#Gotham-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham-Medium';
+  src: url('../fonts/Gotham-Medium.eot');
+  src: url('../fonts/Gotham-Medium.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Gotham-Medium.woff2') format('woff2'),
+       url('../fonts/Gotham-Medium.woff') format('woff'),
+       url('../fonts/Gotham-Medium.ttf') format('truetype'),
+       url('../fonts/Gotham-Medium.svg#Gotham-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('../fonts/Gotham-Light.eot');
+  src: url('../fonts/Gotham-Light.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Gotham-Light.woff2') format('woff2'),
+       url('../fonts/Gotham-Light.woff') format('woff'),
+       url('../fonts/Gotham-Light.ttf') format('truetype'),
+       url('../fonts/Gotham-Light.svg#Gotham-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Gotham-Book',Geneva,Tahoma,Verdana,sans-serif;
+  color: white;
+  background-color: #636463;
+}
+
+h1, h2 {
+  font-family: 'Gotham-Light',Geneva,Tahoma,Verdana,sans-serif;
+  font-weight: 200;
+}
+
+.container {
+  width: 100%;
+}
+
+/* Header */
+
+nav {
+  height: 100px;
+}
+nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+nav ul li {
+  display: inline-block;
+  margin: 35px 50px;
+  font-family: 'Gotham-Medium',Geneva,Tahoma,Verdana,sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.logo {
+  width: 350px;
+  margin-top: -7px;
+  vertical-align: middle;
+}
+
+/* Content */
+
+.content > img {
+  width: 100%;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  z-index: 100;
+}
+.text {
+  position: relative;
+  width: 500px;
+  margin: 100px 0 0 10%;
+  z-index: 200;
+}
+.text img {
+  width: 500px;
+  z-index: 200;
+}
+@-webkit-keyframes button-pulse {
+  from { background-color: #F7A858;  }
+  50% { background-color: #FFB565;  }
+  to { background-color: #F7A858;  }
+}
+@keyframes button-pulse {
+  from { background-color: #F7A858;  }
+  50% { background-color: #FFB565;  }
+  to { background-color: #F7A858;  }
+}
+.text button {
+  -webkit-animation-name: button-pulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: button-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+
+  background-color: #F7A858; /* rgb(247, 168, 88); */
+  border-radius: 15px;
+  border: none;
+  width: 300px;
+  height: 35px;
+  display: block;
+  margin: 50px auto 0 auto;
+  z-index: 200;
+}
+.text button:focus {
+  outline: 0;
+}
+.text button:hover {
+  background-color: #FFB565;
+}
+.text button:active {
+  background-color: #EA9B4B;
+  border-top: 2px solid #DE8F3F;
+}
+.download {
+  display: none;
+  position: absolute;
+  z-index: 200;
+  top: 30%;
+  left: 50%;
+}
+.download .ios,
+.download .android {
+  background-color: #F7A858; /* rgb(247, 168, 88); */
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  float: left;
+  padding: 7px 10px 7px 10px;
+}
+.download .ios {
+  margin: 0 10px 10px 0;
+}
+.download .ios img,
+.download .android img {
+  margin: 2px 0 0 5px;
+  width: 35px;
+  float: left;
+}
+.download > div > div {
+  margin-left: 50px;
+}
+.download .ios h2,
+.download .android h2 {
+  margin: 0;
+}
+
+@media screen and (min-width: 769px) {
+  .hidden-desktop {
+    display: none;
+  }
+}
+@media screen and (max-width: 1050px ) {
+  nav ul li {
+    margin: 33px 15px;
+  }
+  .text, .text img, .text button {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav ul li {
+    display: block;
+  }
+  .text {
+    margin: 20px 0 0 10px;
+  }
+  .text, .text img {
+    text-align: center;
+    width: 90%;
+  }
+  .text button {
+    text-align: center;
+    width: 65%;
+  }
+  .text button {
+    margin: 20px auto;
+  }
+  .hidden-mobile {
+    display: none;
+  }
+  .download {
+    display: none;
+    position: absolute;
+    z-index: 200;
+    top: 110px;
+    left: 10px;
+  }
+}
