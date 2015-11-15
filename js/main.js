@@ -11,12 +11,22 @@
     }
   }
 
-  function preload(imgs) {
-    $(imgs).each(function() {
-      $(this).each(function() {
-        $('<img/>').attr('src', 'img/' + this);
-      });
-    });
+  function flatten(arr) {
+    return [].concat.apply([], arr);
+  }
+
+  function preload(imgs, callback) {
+    var promises = [];
+    for (var i = 0; i < imgs.length; i++) {
+      (function(url, promise) {
+        var img = new Image();
+        img.onload = function() {
+          promise.resolve();
+        };
+        img.src = 'img/' + url;
+      })(imgs[i], promises[i] = $.Deferred());
+    }
+    $.when.apply($, promises).done(callback);
   }
 
   $(document).ready(function() {
@@ -36,30 +46,31 @@
                '5_7.jpg', '5_8.jpg', '5_9.jpg']]
     , imgsIndex = 0;
 
-    $button.click(function(e) {
-      var onCompleted;
-      e.preventDefault();
-      $button.hide();
 
-      if(imgsIndex == imgs.length - 1) {
-        onCompleted = function() {
-          $text.addClass('hidden-mobile');
-          $download.show();
-        };
-      } else {
-        onCompleted = function() {
-          $button.show();
-        };
-      }
+    preload(flatten(imgs), function() {
+      $button.click(function(e) {
+        var onCompleted;
+        e.preventDefault();
+        $button.hide();
 
-      animate($img, imgs[imgsIndex], 0, onCompleted);
+        if(imgsIndex == imgs.length - 1) {
+          onCompleted = function() {
+            $text.addClass('hidden-mobile');
+            $download.show();
+          };
+        } else {
+          onCompleted = function() {
+            $button.show();
+          };
+        }
 
-      imgsIndex += 1;
+        animate($img, imgs[imgsIndex], 0, onCompleted);
 
-      return false;
+        imgsIndex += 1;
+
+        return false;
+      }).text('Provide').attr('disabled', false);
     });
-
-    preload(imgs);
-    preload([['ios.png', 'android.png']]);
+    preload(['ios.png', 'android.png'], function() {});
   });
 })(jQuery);
