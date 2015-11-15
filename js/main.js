@@ -60,5 +60,6 @@
     });
 
     preload(imgs);
+    preload([['ios.png', 'android.png']]);
   });
 })(jQuery);
